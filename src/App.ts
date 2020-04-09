@@ -581,7 +581,9 @@ export default class App {
       listenerArgs.ack = ack;
     } else {
       // Events API requests are acknowledged right away, since there's no data expected
-      await ack();
+      //await ack();
+      // calling ack right away was causing FaaS to escape prematurely
+      listenerArgs.ack = ack;
     }
 
     // Get the client arg
